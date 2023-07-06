@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bakong KHQR</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="/bootstrap.min.css" rel="stylesheet">
+    <script src="/bootstrap.bundle.min.js"></script>
+
+    <!-- HTML to Canvas -->
+    <script src="/html2canvas.js"></script>
+    <script src="/html2canvas.min.js"></script>
+
+    <link rel="shortcut icon" href="/sbc_logo.png" />
+    <style>
+        body {
+            background: #ddd;
+        }
+
+        .card-size {
+            width: 450px;
+            /* height: 650px; */
+            height: 607px;
+            margin: 30px auto;
+        }
+
+        .khqr-card {
+            width: 340px;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0px 5px 10px 0 rgba(0, 0, 0, 0.4);
+            background-color: white;
+        }
+
+        .khqr-header {
+            position: relative;
+            background: #e1232e;
+            color: #fff;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            height: 50px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .khqr-header .logo {
+            margin-bottom: 0px;
+            width: 75px;
+        }
+
+        .khqr-body {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-right: 25px;
+            padding-left: 25px;
+        }
+
+        .khqr-body .bank-account {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .khqr-body .bank-amount .amount {
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        .khqr-body .bank-amount .curreny {
+            color: black;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .border-line {
+            color: #ddd;
+            width: inherit;
+            height: 0px;
+            font-weight: 600;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .khqr-footer {
+            padding: 25px;
+        }
+
+        .triangle {
+            position: absolute;
+        }
+
+        .triangle::after {
+            content: "";
+            position: absolute;
+            bottom: -57px;
+            right: -170px;
+            border: 1em solid #e1232e;
+            border-color: transparent transparent #e1232e #e1232e;
+            transform: rotate(-180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="">
+            <div class="card card-size" id="card-size">
+                <div class="card-body">
+                    <div class="khqr-card">
+                        <div class="khqr-header d-flex justify-content-center align-items-center">
+                            <img class="logo" src="/khqr-logo.png" alt="">
+                            <div class="triangle"></div>
+                        </div>
+                        <div class="khqr-body">
+                            <div class="bank-account">
+                                <p class="m-0"><%= name %></p>
+                            </div>
+                            <div class="bank-amount">
+                                <span class="amount"><%= amount %></span>
+                                <span class="curreny">USD</span>
+                            </div>
+                        </div>
+                        <div class="border-line">
+                            ------------------------------------------
+                        </div>
+                        <div class="khqr-footer">
+                            <div class="bank-qr-code w-100">
+                                <img src="/qr-code-test.png" alt="" class="w-100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-2 text-center">
+                <button type="button" id="to-image" class="btn btn-primary btn-sm to-image">To Image</button>
+                <button type="button" id="to-base64" class="btn btn-info btn-sm to-base64">To Base64</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#to-image').on('click', () => {
+                html2canvas(document.querySelector("#card-size")).then(canvas => {
+                    // Convert the canvas to base64 image data
+                    var imgData = canvas.toDataURL("khqr/png");
+
+                    // Create a temporary anchor element
+                    var link = document.createElement('a');
+                    link.href = imgData;
+                    link.download = 'image.png';
+
+                    // Programmatically trigger the download
+                    link.click();
+                });
+
+            });
+
+            $('#to-base64').on('click', () => {
+                html2canvas(document.querySelector("#card-size")).then(canvas => {
+                    // Convert the canvas to base64 image data
+                    var imgData = canvas.toDataURL("khqr/png");
+                    console.log(imgData)
+                });
+            });
+            
+        });
+    </script>
+</body>
+</html>

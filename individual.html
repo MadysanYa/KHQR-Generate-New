@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Bakong KHQR</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <script src="./js/bootstrap.bundle.min.js"></script>
+        <link rel="shortcut icon" href="./img/sbc_logo.png" />
+        <style>
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="text-center py-5">
+                <img src="./img/sbc_logo.png" width="75"/>
+                Bakong KHQR Generator For Personal
+            </h1>
+            <input type="hidden" id="type-khqr" name="type-khqr" value="personal"/>
+            <div class="row">
+                <div class="col-6">
+                    <div style="border: 1px solid #d1d1d1; padding: 30px; border-radius: 20px; min-height: 583px;" class="h-100">
+                        <h3 class="text-center pb-3">Bakong Personal Information</h3>
+                        <div class="form-group pb-3 row">
+                            <label class="col-sm-4 d-flex align-items-center">Name *</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="merchantName" placeholder="Please Enter Name *" maxlength="25">
+                                <small id="merchantNameMsg" class="d-none form-text text-danger require">Please enter Name</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group pb-3 row">
+                            <label class="col-sm-4 d-flex align-items-center">City *</label>
+                            <div class="col-sm-8">
+                                <select id="merchantCity" class="form-control" style="appearance: auto">
+                                    <option selected>Phnom Penh</option>
+                                    <option>Banteay Meanchey</option>
+                                    <option>Battambang</option>
+                                    <option>Kampong Cham</option>
+                                    <option>Kampong Chhnang</option>
+                                    <option>Kampong Speu</option>
+                                    <option>Kampong Thom</option>
+                                    <option>Kampot</option>
+                                    <option>Kandal</option>
+                                    <option>Kep</option>
+                                    <option>Koh Kong</option>
+                                    <option>Kratié</option>
+                                    <option>Mondulkiri</option>
+                                    <option>Oddar Meanchey</option>
+                                    <option>Pailin</option>
+                                    <option>Preah Sihanouk</option>
+                                    <option>Preah Vihear</option>
+                                    <option>Prey Veng</option>
+                                    <option>Pursat</option>
+                                    <option>Ratanakiri</option>
+                                    <option>Siem Reap</option>
+                                    <option>Stung Treng</option>
+                                    <option>Svay Rieng</option>
+                                    <option>Takeo</option>
+                                    <option>Tboung Khmum</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group pb-3 row">
+                            <label class="col-sm-4 d-flex align-items-center">Account Number *</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="merchantId" aria-describedby="merchantId" placeholder="Please Enter Account Number *" maxlength="22" 
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                                <small id="merchantIdMsg" class="d-none form-text text-danger require">Please enter Account Number</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group pb-3 row">
+                            <label class="col-sm-4 d-flex align-items-center">currency</label>
+                            <div class="col-sm-8">
+                                <select id="currency" class="form-control" style="appearance: auto">
+                                    <option selected>USD</option>
+                                    <option>KHR</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group pb-3 row">
+                            <label class="col-sm-4 d-flex align-items-center">Amount</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="amount" placeholder="Please Enter Amount" maxlength="25">
+                                <small id="amountMsg" class="d-none form-text text-danger require">Please enter Amount</small>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary d-block m-auto mt-2" id="generate">Generate KHQR</button>
+                        <div id="khqrString" class="py-3" style="line-break: anywhere;"></div>
+                    </div>
+                </div>
+                <div class="col-6 p-3" style="background-color: #f2f2f2; border-radius: 20px;">
+                    <h3 class="text-center pb-3">KHQR</h3>
+                    <img id="image" class="d-block m-auto">
+                    <a class="btn btn-primary mt-3 d-block m-auto d-none" id="download" style="width: 30%;">Download KHQR</a>
+                </div>
+            </div>
+            <a class="btn btn-secondary mt-3 py-2 d-block m-auto" style="width: 30%;" href="index.php">Generator For Merchant</a>
+        </div>
+        <script src="./dist/bundle.js"></script>
+    </body>
+</html>
